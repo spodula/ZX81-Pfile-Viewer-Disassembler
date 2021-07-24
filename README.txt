@@ -1,4 +1,4 @@
-This is the PFILE viewer (Java SWT version)
+This is the PFILE viewer and disassembler (Java SWT version)
 by Graham Salkin 2020-2021.
 
 Changelog:
