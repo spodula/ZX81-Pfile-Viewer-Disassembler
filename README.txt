@@ -1,4 +1,4 @@
-This is the PFILE viewer (Java SWT version)
+This is the PFILE viewer and disassembler (Java SWT version)
 by Graham Salkin 2020-2021.
 
 Changelog:
@@ -7,7 +7,7 @@ Changelog:
 
 Description
 This is a program to read and parse zx81 P files. (RAM dump files)
-There are lots of these. My addition to the Genere is that this one will try to disassemble REM statements for your amusement. Its reasonably successful.
+My addition to the Genere is that this one will try to disassemble REM statements for your amusement. Its reasonably successful.
 This program should be runnable straight from the desktop as long as you have an up to date Java installed.
 The source code has a maven script and should be easy to build and run.
 
