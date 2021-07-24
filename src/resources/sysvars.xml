@@ -1,0 +1,53 @@
+﻿<?xml version="1.0"?>
+<!-- zx81 system variables as extracted from Mastering Machine Code on Your ZX81 by Toni Baker. 
+     ASCIIfied by Thunor
+     Converted to XML by GDS
+-->
+<systemvariables>
+ <sysvar address="4009" class="BYTE" abbrev="VERSN">Version number (0=zx81 8k rom)</sysvar> 
+ <sysvar address="400A" class="WORD" abbrev="E_PPC">Current line number with cursor</sysvar>
+ <sysvar address="400C" class="WORD" abbrev="D_FILE">Address of the display file</sysvar> 
+ <sysvar address="400E" class="WORD" abbrev="DF_CC">Address of print position in display file</sysvar>
+ <sysvar address="4010" class="WORD" abbrev="VARS">Address of the variables area</sysvar> 
+ <sysvar address="4012" class="WORD" abbrev="DEST">Address of the variable when assigning</sysvar>
+ <sysvar address="4014" class="WORD" abbrev="E_LINE">Address of line being typed...</sysvar> 
+ <sysvar address="4016" class="WORD" abbrev="CH_ADD">Address of next character to be interpreted</sysvar>
+ <sysvar address="4018" class="WORD" abbrev="X_PTR">Address of the previous character to the cursor</sysvar> 
+ <sysvar address="401A" class="WORD" abbrev="STKBOT">Bottom of the calculator stack</sysvar>
+ <sysvar address="401C" class="WORD" abbrev="STKEND">Top of the calculator stack</sysvar> 
+ <sysvar address="401E" class="WORD" abbrev="BERG">Calculator B register</sysvar>
+ <sysvar address="401F" class="WORD" abbrev="MEM">Address of the calculators memory</sysvar> 
+ <sysvar address="4021" class="BYTE" abbrev="SPARE1">not used</sysvar>
+ <sysvar address="4022" class="BYTE" abbrev="DF_SZ">The number of lines (including one blank line) in the lower part of the screen.</sysvar> 
+ <sysvar address="4023" class="WORD" abbrev="S_TOP">The number of the top program line in automatic listings</sysvar>
+ <sysvar address="4025" class="WORD" abbrev="LAST_K">Raw last key pressed</sysvar> 
+ <sysvar address="4027" class="BYTE" abbrev="DB_ST">Keyboard debounce status</sysvar>
+ <sysvar address="4028" class="BYTE" abbrev="MARGIN">Number of blank lines above or below picture (55 for the UK, 31 for the US)</sysvar> 
+ <sysvar address="4029" class="WORD" abbrev="NXTLIN">Address of next program line to be executed</sysvar>
+ <sysvar address="402B" class="WORD" abbrev="OLDPPC">Line number to which CONT jumps after a STOP</sysvar> 
+ <sysvar address="402D" class="FLAGS" abbrev="FLAGX">Flags, Most used during variable Parsing, but bit 5 sets K/L mode which may be useful</sysvar>
+ <sysvar address="402E" class="WORD" abbrev="STRLEN">Length of string type designation in assignment.</sysvar> 
+ <sysvar address="4030" class="WORD" abbrev="T_ADDR">Address of next item in syntax table</sysvar>
+ <sysvar address="4032" class="WORD" abbrev="SEED"> The seed for RND. This is the variable that is set by RAND.</sysvar> 
+ <sysvar address="4034" class="WORD" abbrev="FRAMES"> Counts the frames displayed on the television. Bit 15 is 1. Bits 0 to 14 are decremented for each frame sent to the television. This can be used for timing, but PAUSE also uses it. PAUSE resets bit 15 to 0 and puts in bits 0 to 14 the length of the pause. When these have been counted down to zero, the pause stops. If the pause stops because of a key  depression, bit 15 is set to 1 again.</sysvar>
+ <sysvar address="4036" class="COORDS" abbrev="COORDS">X,Y plotted coordinates</sysvar> 
+ <sysvar address="4038" class="BYTE" abbrev="PR_CC">Less significant byte of address of next position for LPRINT to print at (in PRBUFF).</sysvar>
+ <sysvar address="4039" class="COORDS" abbrev="S_POSN">X,Y position of print position</sysvar>
+ <sysvar address="403B" class="FLAGS" abbrev="CDFLAG">Fast/slow flags. Bit 6 contains the current fast/slow mode. Bit 7 is set if the display is actually being displayed (Eg, if in fast, a Pause is being executed)</sysvar>
+ <sysvar address="403C" class="PRBUFF" abbrev="PRBUFF">Printer buffer</sysvar>
+ <sysvar address="405D" class="WORD" abbrev="MEMBOT">Calculator’s memory area; used to store numbers that cannot conveniently be put on the calculator stack</sysvar>
+ <sysvar address="407B" class="BYTE" abbrev="SPARE2">Not used</sysvar>
+ <flags>
+	<flag abbrev="CDFLAG">
+		<bit num="6" false="FAST" true="SLOW">Global FAST/SLOW mode.</bit>
+		<bit num="7" false="NODISPLAY" true="DISPLAY">Determines if we are Actually displaying the screen (EG, Fast mode in a PAUSE statement)</bit>
+	</flag>
+	<flag abbrev="FLAGX">
+		<bit num="0" false="ARRAY" true="NOT ARRAY">Variable being parsed is an array</bit>
+		<bit num="1" false="OLD VAR" true="NEW VAR">Variable being parsed is new</bit>
+		<bit num="5" false="K Mode" true="L Mode">K or L mode</bit>
+		<bit num="6" false="STRING" true="NUMERIC">Variable being parsed is a String</bit>
+	</flag>
+ </flags>
+</systemvariables>
+

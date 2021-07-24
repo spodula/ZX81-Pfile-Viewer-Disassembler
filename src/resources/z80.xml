@@ -1,0 +1,1281 @@
+﻿<?xml version="1.0"?>
+<!-- Opcode list for my quick and dirty disassembler. 
+GDS Feb 2018
+   Codes:
+      NNNN = 16 bit number			    -> nn
+      NN   = 8 bit number               -> n
+      GG   = relative jump index        -> GG
+      LLLL = address reference          -> nn
+      ZZZZ = Absolute jump/call address -> ZZZZ
+      HH   = IX\IY index				-> d
+-->
+<opcodes>
+<opcode hex="00" cmd="NOP"></opcode>
+<opcode hex="01NNNN" cmd="LD BC,nn"></opcode>
+<opcode hex="02" cmd="LD (BC),A"></opcode>
+<opcode hex="03" cmd="INC BC"></opcode>
+<opcode hex="04" cmd="INC B"></opcode>
+<opcode hex="05" cmd="DEC B"></opcode>
+<opcode hex="06NN" cmd="LD B,n"></opcode>
+<opcode hex="07" cmd="RLCA"></opcode>
+<opcode hex="08" cmd="EX AF,AF’"></opcode>
+<opcode hex="09" cmd="ADD HL,BC"></opcode>
+<opcode hex="0A" cmd="LD A,(BC)"></opcode>
+<opcode hex="0B" cmd="DEC BC"></opcode>
+<opcode hex="0C" cmd="INC C"></opcode>
+<opcode hex="0D" cmd="DEC C"></opcode>
+<opcode hex="0ENN" cmd="LD C,n"></opcode>
+<opcode hex="0F" cmd="RRCA"></opcode>
+<opcode hex="10GG" cmd="DJNZ GG"></opcode>
+<opcode hex="11NNNN" cmd="LD DE,nn"></opcode>
+<opcode hex="12" cmd="LD (DE),A"></opcode>
+<opcode hex="13" cmd="INC DE"></opcode>
+<opcode hex="14" cmd="INC D"></opcode>
+<opcode hex="15" cmd="DEC D"></opcode>
+<opcode hex="16NN" cmd="LD D,n"></opcode>
+<opcode hex="17" cmd="RLA"></opcode>
+<opcode hex="18GG" cmd="JR GG"></opcode>
+<opcode hex="19" cmd="ADD HL,DE"></opcode>
+<opcode hex="1A" cmd="LD A,(DE)"></opcode>
+<opcode hex="1B" cmd="DEC DE"></opcode>
+<opcode hex="1C" cmd="INC E"></opcode>
+<opcode hex="1D" cmd="DEC E"></opcode>
+<opcode hex="1ENN" cmd="LD E,n"></opcode>
+<opcode hex="1F" cmd="RRA"></opcode>
+<opcode hex="20GG" cmd="JR NZ,GG"></opcode>
+<opcode hex="21NNNN" cmd="LD HL,nn"></opcode>
+<opcode hex="22LLLL" cmd="LD (nn),HL"></opcode>
+<opcode hex="23" cmd="INC HL"></opcode>
+<opcode hex="24" cmd="INC H"></opcode>
+<opcode hex="25" cmd="DEC H"></opcode>
+<opcode hex="26NN" cmd="LD H,n"></opcode>
+<opcode hex="27" cmd="DAA"></opcode>
+<opcode hex="28GG" cmd="JR Z,GG"></opcode>
+<opcode hex="29" cmd="ADD HL,HL"></opcode>
+<opcode hex="2ALLLL" cmd="LD HL,(nn)"></opcode>
+<opcode hex="2B" cmd="DEC HL"></opcode>
+<opcode hex="2C" cmd="INC L"></opcode>
+<opcode hex="2D" cmd="DEC L"></opcode>
+<opcode hex="2ENN" cmd="LD L,n"></opcode>
+<opcode hex="2F" cmd="CPL"></opcode>
+<opcode hex="30GG" cmd="JR NC,GG"></opcode>
+<opcode hex="31NNNN" cmd="LD SP,nn"></opcode>
+<opcode hex="32LLLL" cmd="LD (nn),A"></opcode>
+<opcode hex="33" cmd="INC SP"></opcode>
+<opcode hex="34" cmd="INC (HL)"></opcode>
+<opcode hex="35" cmd="DEC (HL)"></opcode>
+<opcode hex="36NN" cmd="LD (HL),n"></opcode>
+<opcode hex="37" cmd="SCF"></opcode>
+<opcode hex="38GG" cmd="JR C,GG"></opcode>
+<opcode hex="39" cmd="ADD HL,SP"></opcode>
+<opcode hex="3ALLLL" cmd="LD A,(nn)"></opcode>
+<opcode hex="3B" cmd="DEC SP"></opcode>
+<opcode hex="3C" cmd="INC A"></opcode>
+<opcode hex="3D" cmd="DEC A"></opcode>
+<opcode hex="3ENN" cmd="LD A,n"></opcode>
+<opcode hex="3F" cmd="CCF"></opcode>
+<opcode hex="40" cmd="LD B,B"></opcode>
+<opcode hex="41" cmd="LD B,C"></opcode>
+<opcode hex="42" cmd="LD B,D"></opcode>
+<opcode hex="43" cmd="LD B,E"></opcode>
+<opcode hex="44" cmd="LD B,H"></opcode>
+<opcode hex="45" cmd="LD B,L"></opcode>
+<opcode hex="46" cmd="LD B,(HL)"></opcode>
+<opcode hex="47" cmd="LD B,A"></opcode>
+<opcode hex="48" cmd="LD C,B"></opcode>
+<opcode hex="49" cmd="LD C,C"></opcode>
+<opcode hex="4A" cmd="LD C,D"></opcode>
+<opcode hex="4B" cmd="LD C,E"></opcode>
+<opcode hex="4C" cmd="LD C,H"></opcode>
+<opcode hex="4D" cmd="LD C,L"></opcode>
+<opcode hex="4E" cmd="LD C,(HL)"></opcode>
+<opcode hex="4F" cmd="LD C,A"></opcode>
+<opcode hex="50" cmd="LD D,B"></opcode>
+<opcode hex="51" cmd="LD D,C"></opcode>
+<opcode hex="52" cmd="LD D,D"></opcode>
+<opcode hex="53" cmd="LD D,E"></opcode>
+<opcode hex="54" cmd="LD D,H"></opcode>
+<opcode hex="55" cmd="LD D,L"></opcode>
+<opcode hex="56" cmd="LD D,(HL)"></opcode>
+<opcode hex="57" cmd="LD D,A"></opcode>
+<opcode hex="58" cmd="LD E,B"></opcode>
+<opcode hex="59" cmd="LD E,C"></opcode>
+<opcode hex="5A" cmd="LD E,D"></opcode>
+<opcode hex="5B" cmd="LD E,E"></opcode>
+<opcode hex="5C" cmd="LD E,H"></opcode>
+<opcode hex="5D" cmd="LD E,L"></opcode>
+<opcode hex="5E" cmd="LD E,(HL)"></opcode>
+<opcode hex="5F" cmd="LD E,A"></opcode>
+<opcode hex="60" cmd="LD H,B"></opcode>
+<opcode hex="61" cmd="LD H,C"></opcode>
+<opcode hex="62" cmd="LD H,D"></opcode>
+<opcode hex="63" cmd="LD H,E"></opcode>
+<opcode hex="64" cmd="LD H,H"></opcode>
+<opcode hex="65" cmd="LD H,L"></opcode>
+<opcode hex="66" cmd="LD H,(HL)"></opcode>
+<opcode hex="67" cmd="LD H,A"></opcode>
+<opcode hex="68" cmd="LD L,B"></opcode>
+<opcode hex="69" cmd="LD L,C"></opcode>
+<opcode hex="6A" cmd="LD L,D"></opcode>
+<opcode hex="6B" cmd="LD L,E"></opcode>
+<opcode hex="6C" cmd="LD L,H"></opcode>
+<opcode hex="6D" cmd="LD L,L"></opcode>
+<opcode hex="6E" cmd="LD L,(HL)"></opcode>
+<opcode hex="6F" cmd="LD L,A"></opcode>
+<opcode hex="70" cmd="LD (HL),B"></opcode>
+<opcode hex="71" cmd="LD (HL),C"></opcode>
+<opcode hex="72" cmd="LD (HL),D"></opcode>
+<opcode hex="73" cmd="LD (HL),E"></opcode>
+<opcode hex="74" cmd="LD (HL),H"></opcode>
+<opcode hex="75" cmd="LD (HL),L"></opcode>
+<opcode hex="76" cmd="HALT"></opcode>
+<opcode hex="77" cmd="LD (HL),A"></opcode>
+<opcode hex="78" cmd="LD A,B"></opcode>
+<opcode hex="79" cmd="LD A,C"></opcode>
+<opcode hex="7A" cmd="LD A,D"></opcode>
+<opcode hex="7B" cmd="LD A,E"></opcode>
+<opcode hex="7C" cmd="LD A,H"></opcode>
+<opcode hex="7D" cmd="LD A,L"></opcode>
+<opcode hex="7E" cmd="LD A,(HL)"></opcode>
+<opcode hex="7F" cmd="LD A,A"></opcode>
+<opcode hex="80" cmd="ADD A,B"></opcode>
+<opcode hex="81" cmd="ADD A,C"></opcode>
+<opcode hex="82" cmd="ADD A,D"></opcode>
+<opcode hex="83" cmd="ADD A,E"></opcode>
+<opcode hex="84" cmd="ADD A,H"></opcode>
+<opcode hex="85" cmd="ADD A,L"></opcode>
+<opcode hex="86" cmd="ADD A,(HL)"></opcode>
+<opcode hex="87" cmd="ADD A,A"></opcode>
+<opcode hex="88" cmd="ADC A,B"></opcode>
+<opcode hex="89" cmd="ADC A,C"></opcode>
+<opcode hex="8A" cmd="ADC A,D"></opcode>
+<opcode hex="8B" cmd="ADC A,E"></opcode>
+<opcode hex="8C" cmd="ADC A,H"></opcode>
+<opcode hex="8D" cmd="ADC A,L"></opcode>
+<opcode hex="8E" cmd="ADC A,(HL)"></opcode>
+<opcode hex="8F" cmd="ADC A,A"></opcode>
+<opcode hex="90" cmd="SUB B"></opcode>
+<opcode hex="91" cmd="SUB C"></opcode>
+<opcode hex="92" cmd="SUB D"></opcode>
+<opcode hex="93" cmd="SUB E"></opcode>
+<opcode hex="94" cmd="SUB H"></opcode>
+<opcode hex="95" cmd="SUB L"></opcode>
+<opcode hex="96" cmd="SUB (HL)"></opcode>
+<opcode hex="97" cmd="SUB A"></opcode>
+<opcode hex="98" cmd="SBC A,B"></opcode>
+<opcode hex="99" cmd="SBC A,C"></opcode>
+<opcode hex="9A" cmd="SBC A,D"></opcode>
+<opcode hex="9B" cmd="SBC A,E"></opcode>
+<opcode hex="9C" cmd="SBC A,H"></opcode>
+<opcode hex="9D" cmd="SBC A,L"></opcode>
+<opcode hex="9E" cmd="SBC A,(HL)"></opcode>
+<opcode hex="9F" cmd="SBC A,A"></opcode>
+<opcode hex="A0" cmd="AND B"></opcode>
+<opcode hex="A1" cmd="AND C"></opcode>
+<opcode hex="A2" cmd="AND D"></opcode>
+<opcode hex="A3" cmd="AND E"></opcode>
+<opcode hex="A4" cmd="AND H"></opcode>
+<opcode hex="A5" cmd="AND L"></opcode>
+<opcode hex="A6" cmd="AND (HL)"></opcode>
+<opcode hex="A7" cmd="AND A"></opcode>
+<opcode hex="A8" cmd="XOR B"></opcode>
+<opcode hex="A9" cmd="XOR C"></opcode>
+<opcode hex="AA" cmd="XOR D"></opcode>
+<opcode hex="AB" cmd="XOR E"></opcode>
+<opcode hex="AC" cmd="XOR H"></opcode>
+<opcode hex="AD" cmd="XOR L"></opcode>
+<opcode hex="AE" cmd="XOR (HL)"></opcode>
+<opcode hex="AF" cmd="XOR A"></opcode>
+<opcode hex="B0" cmd="OR B"></opcode>
+<opcode hex="B1" cmd="OR C"></opcode>
+<opcode hex="B2" cmd="OR D"></opcode>
+<opcode hex="B3" cmd="OR E"></opcode>
+<opcode hex="B4" cmd="OR H"></opcode>
+<opcode hex="B5" cmd="OR L"></opcode>
+<opcode hex="B6" cmd="OR (HL)"></opcode>
+<opcode hex="B7" cmd="OR A"></opcode>
+<opcode hex="B8" cmd="CP B"></opcode>
+<opcode hex="B9" cmd="CP C"></opcode>
+<opcode hex="BA" cmd="CP D"></opcode>
+<opcode hex="BB" cmd="CP E"></opcode>
+<opcode hex="BC" cmd="CP H"></opcode>
+<opcode hex="BD" cmd="CP L"></opcode>
+<opcode hex="BE" cmd="CP (HL)"></opcode>
+<opcode hex="BF" cmd="CP A"></opcode>
+<opcode hex="C0" cmd="RET NZ"></opcode>
+<opcode hex="C1" cmd="POP BC"></opcode>
+<opcode hex="C2ZZZZ" cmd="JP NZ,ZZZZ"></opcode>
+<opcode hex="C3ZZZZ" cmd="JP ZZZZ"></opcode>
+<opcode hex="C4ZZZZ" cmd="CALL NZ,ZZZZ"></opcode>
+<opcode hex="C5" cmd="PUSH BC"></opcode>
+<opcode hex="C6NN" cmd="ADD A,n"></opcode>
+<opcode hex="C7" cmd="RST 0H"></opcode>
+<opcode hex="C8" cmd="RET Z"></opcode>
+<opcode hex="C9" cmd="RET"></opcode>
+<opcode hex="CAZZZZ" cmd="JP Z,ZZZZ"></opcode>
+<opcode hex="CB00" cmd="RLC B"></opcode>
+<opcode hex="CB01" cmd="RLC C"></opcode>
+<opcode hex="CB02" cmd="RLC D"></opcode>
+<opcode hex="CB03" cmd="RLC E"></opcode>
+<opcode hex="CB04" cmd="RLC H"></opcode>
+<opcode hex="CB05" cmd="RLC L"></opcode>
+<opcode hex="CB06" cmd="RLC (HL)"></opcode>
+<opcode hex="CB07" cmd="RLC A"></opcode>
+<opcode hex="CB08" cmd="RRC B"></opcode>
+<opcode hex="CB09" cmd="RRC C"></opcode>
+<opcode hex="CB0A" cmd="RRC D"></opcode>
+<opcode hex="CB0B" cmd="RRC E"></opcode>
+<opcode hex="CB0C" cmd="RRC H"></opcode>
+<opcode hex="CB0D" cmd="RRC L"></opcode>
+<opcode hex="CB0E" cmd="RRC (HL)"></opcode>
+<opcode hex="CB0F" cmd="RRC A"></opcode>
+<opcode hex="CB10" cmd="RL B"></opcode>
+<opcode hex="CB11" cmd="RL C"></opcode>
+<opcode hex="CB12" cmd="RL D"></opcode>
+<opcode hex="CB13" cmd="RL E"></opcode>
+<opcode hex="CB14" cmd="RL H"></opcode>
+<opcode hex="CB15" cmd="RL L"></opcode>
+<opcode hex="CB16" cmd="RL (HL)"></opcode>
+<opcode hex="CB17" cmd="RL A"></opcode>
+<opcode hex="CB18" cmd="RR B"></opcode>
+<opcode hex="CB19" cmd="RR C"></opcode>
+<opcode hex="CB1A" cmd="RR D"></opcode>
+<opcode hex="CB1B" cmd="RR E"></opcode>
+<opcode hex="CB1C" cmd="RR H"></opcode>
+<opcode hex="CB1D" cmd="RR L"></opcode>
+<opcode hex="CB1E" cmd="RR (HL)"></opcode>
+<opcode hex="CB1F" cmd="RR A"></opcode>
+<opcode hex="CB20" cmd="SLA B"></opcode>
+<opcode hex="CB21" cmd="SLA C"></opcode>
+<opcode hex="CB22" cmd="SLA D"></opcode>
+<opcode hex="CB23" cmd="SLA E"></opcode>
+<opcode hex="CB24" cmd="SLA H"></opcode>
+<opcode hex="CB25" cmd="SLA L"></opcode>
+<opcode hex="CB26" cmd="SLA (HL)"></opcode>
+<opcode hex="CB27" cmd="SLA A"></opcode>
+<opcode hex="CB28" cmd="SRA B"></opcode>
+<opcode hex="CB29" cmd="SRA C"></opcode>
+<opcode hex="CB2A" cmd="SRA D"></opcode>
+<opcode hex="CB2B" cmd="SRA E"></opcode>
+<opcode hex="CB2C" cmd="SRA H"></opcode>
+<opcode hex="CB2D" cmd="SRA L"></opcode>
+<opcode hex="CB2E" cmd="SRA (HL)"></opcode>
+<opcode hex="CB2F" cmd="SRA A"></opcode>
+<opcode hex="CB30" cmd="SLL B*"></opcode>
+<opcode hex="CB31" cmd="SLL C*"></opcode>
+<opcode hex="CB32" cmd="SLL D*"></opcode>
+<opcode hex="CB33" cmd="SLL E*"></opcode>
+<opcode hex="CB34" cmd="SLL H*"></opcode>
+<opcode hex="CB35" cmd="SLL L*"></opcode>
+<opcode hex="CB36" cmd="SLL (HL)*"></opcode>
+<opcode hex="CB37" cmd="SLL A*"></opcode>
+<opcode hex="CB38" cmd="SRL B"></opcode>
+<opcode hex="CB39" cmd="SRL C"></opcode>
+<opcode hex="CB3A" cmd="SRL D"></opcode>
+<opcode hex="CB3B" cmd="SRL E"></opcode>
+<opcode hex="CB3C" cmd="SRL H"></opcode>
+<opcode hex="CB3D" cmd="SRL L"></opcode>
+<opcode hex="CB3E" cmd="SRL (HL)"></opcode>
+<opcode hex="CB3F" cmd="SRL A"></opcode>
+<opcode hex="CB40" cmd="BIT 0,B"></opcode>
+<opcode hex="CB41" cmd="BIT 0,C"></opcode>
+<opcode hex="CB42" cmd="BIT 0,D"></opcode>
+<opcode hex="CB43" cmd="BIT 0,E"></opcode>
+<opcode hex="CB44" cmd="BIT 0,H"></opcode>
+<opcode hex="CB45" cmd="BIT 0,L"></opcode>
+<opcode hex="CB46" cmd="BIT 0,(HL)"></opcode>
+<opcode hex="CB47" cmd="BIT 0,A"></opcode>
+<opcode hex="CB48" cmd="BIT 1,B"></opcode>
+<opcode hex="CB49" cmd="BIT 1,C"></opcode>
+<opcode hex="CB4A" cmd="BIT 1,D"></opcode>
+<opcode hex="CB4B" cmd="BIT 1,E"></opcode>
+<opcode hex="CB4C" cmd="BIT 1,H"></opcode>
+<opcode hex="CB4D" cmd="BIT 1,L"></opcode>
+<opcode hex="CB4E" cmd="BIT 1,(HL)"></opcode>
+<opcode hex="CB4F" cmd="BIT 1,A"></opcode>
+<opcode hex="CB50" cmd="BIT 2,B"></opcode>
+<opcode hex="CB51" cmd="BIT 2,C"></opcode>
+<opcode hex="CB52" cmd="BIT 2,D"></opcode>
+<opcode hex="CB53" cmd="BIT 2,E"></opcode>
+<opcode hex="CB54" cmd="BIT 2,H"></opcode>
+<opcode hex="CB55" cmd="BIT 2,L"></opcode>
+<opcode hex="CB56" cmd="BIT 2,(HL)"></opcode>
+<opcode hex="CB57" cmd="BIT 2,A"></opcode>
+<opcode hex="CB58" cmd="BIT 3,B"></opcode>
+<opcode hex="CB59" cmd="BIT 3,C"></opcode>
+<opcode hex="CB5A" cmd="BIT 3,D"></opcode>
+<opcode hex="CB5B" cmd="BIT 3,E"></opcode>
+<opcode hex="CB5C" cmd="BIT 3,H"></opcode>
+<opcode hex="CB5D" cmd="BIT 3,L"></opcode>
+<opcode hex="CB5E" cmd="BIT 3,(HL)"></opcode>
+<opcode hex="CB5F" cmd="BIT 3,A"></opcode>
+<opcode hex="CB60" cmd="BIT 4,B"></opcode>
+<opcode hex="CB61" cmd="BIT 4,C"></opcode>
+<opcode hex="CB62" cmd="BIT 4,D"></opcode>
+<opcode hex="CB63" cmd="BIT 4,E"></opcode>
+<opcode hex="CB64" cmd="BIT 4,H"></opcode>
+<opcode hex="CB65" cmd="BIT 4,L"></opcode>
+<opcode hex="CB66" cmd="BIT 4,(HL)"></opcode>
+<opcode hex="CB67" cmd="BIT 4,A"></opcode>
+<opcode hex="CB68" cmd="BIT 5,B"></opcode>
+<opcode hex="CB69" cmd="BIT 5,C"></opcode>
+<opcode hex="CB6A" cmd="BIT 5,D"></opcode>
+<opcode hex="CB6B" cmd="BIT 5,E"></opcode>
+<opcode hex="CB6C" cmd="BIT 5,H"></opcode>
+<opcode hex="CB6D" cmd="BIT 5,L"></opcode>
+<opcode hex="CB6E" cmd="BIT 5,(HL)"></opcode>
+<opcode hex="CB6F" cmd="BIT 5,A"></opcode>
+<opcode hex="CB70" cmd="BIT 6,B"></opcode>
+<opcode hex="CB71" cmd="BIT 6,C"></opcode>
+<opcode hex="CB72" cmd="BIT 6,D"></opcode>
+<opcode hex="CB73" cmd="BIT 6,E"></opcode>
+<opcode hex="CB74" cmd="BIT 6,H"></opcode>
+<opcode hex="CB75" cmd="BIT 6,L"></opcode>
+<opcode hex="CB76" cmd="BIT 6,(HL)"></opcode>
+<opcode hex="CB77" cmd="BIT 6,A"></opcode>
+<opcode hex="CB78" cmd="BIT 7,B"></opcode>
+<opcode hex="CB79" cmd="BIT 7,C"></opcode>
+<opcode hex="CB7A" cmd="BIT 7,D"></opcode>
+<opcode hex="CB7B" cmd="BIT 7,E"></opcode>
+<opcode hex="CB7C" cmd="BIT 7,H"></opcode>
+<opcode hex="CB7D" cmd="BIT 7,L"></opcode>
+<opcode hex="CB7E" cmd="BIT 7,(HL)"></opcode>
+<opcode hex="CB7F" cmd="BIT 7,A"></opcode>
+<opcode hex="CB80" cmd="RES 0,B"></opcode>
+<opcode hex="CB81" cmd="RES 0,C"></opcode>
+<opcode hex="CB82" cmd="RES 0,D"></opcode>
+<opcode hex="CB83" cmd="RES 0,E"></opcode>
+<opcode hex="CB84" cmd="RES 0,H"></opcode>
+<opcode hex="CB85" cmd="RES 0,L"></opcode>
+<opcode hex="CB86" cmd="RES 0,(HL)"></opcode>
+<opcode hex="CB87" cmd="RES 0,A"></opcode>
+<opcode hex="CB88" cmd="RES 1,B"></opcode>
+<opcode hex="CB89" cmd="RES 1,C"></opcode>
+<opcode hex="CB8A" cmd="RES 1,D"></opcode>
+<opcode hex="CB8B" cmd="RES 1,E"></opcode>
+<opcode hex="CB8C" cmd="RES 1,H"></opcode>
+<opcode hex="CB8D" cmd="RES 1,L"></opcode>
+<opcode hex="CB8E" cmd="RES 1,(HL)"></opcode>
+<opcode hex="CB8F" cmd="RES 1,A"></opcode>
+<opcode hex="CB90" cmd="RES 2,B"></opcode>
+<opcode hex="CB91" cmd="RES 2,C"></opcode>
+<opcode hex="CB92" cmd="RES 2,D"></opcode>
+<opcode hex="CB93" cmd="RES 2,E"></opcode>
+<opcode hex="CB94" cmd="RES 2,H"></opcode>
+<opcode hex="CB95" cmd="RES 2,L"></opcode>
+<opcode hex="CB96" cmd="RES 2,(HL)"></opcode>
+<opcode hex="CB97" cmd="RES 2,A"></opcode>
+<opcode hex="CB98" cmd="RES 3,B"></opcode>
+<opcode hex="CB99" cmd="RES 3,C"></opcode>
+<opcode hex="CB9A" cmd="RES 3,D"></opcode>
+<opcode hex="CB9B" cmd="RES 3,E"></opcode>
+<opcode hex="CB9C" cmd="RES 3,H"></opcode>
+<opcode hex="CB9D" cmd="RES 3,L"></opcode>
+<opcode hex="CB9E" cmd="RES 3,(HL)"></opcode>
+<opcode hex="CB9F" cmd="RES 3,A"></opcode>
+<opcode hex="CBA0" cmd="RES 4,B"></opcode>
+<opcode hex="CBA1" cmd="RES 4,C"></opcode>
+<opcode hex="CBA2" cmd="RES 4,D"></opcode>
+<opcode hex="CBA3" cmd="RES 4,E"></opcode>
+<opcode hex="CBA4" cmd="RES 4,H"></opcode>
+<opcode hex="CBA5" cmd="RES 4,L"></opcode>
+<opcode hex="CBA6" cmd="RES 4,(HL)"></opcode>
+<opcode hex="CBA7" cmd="RES 4,A"></opcode>
+<opcode hex="CBA8" cmd="RES 5,B"></opcode>
+<opcode hex="CBA9" cmd="RES 5,C"></opcode>
+<opcode hex="CBAA" cmd="RES 5,D"></opcode>
+<opcode hex="CBAB" cmd="RES 5,E"></opcode>
+<opcode hex="CBAC" cmd="RES 5,H"></opcode>
+<opcode hex="CBAD" cmd="RES 5,L"></opcode>
+<opcode hex="CBAE" cmd="RES 5,(HL)"></opcode>
+<opcode hex="CBAF" cmd="RES 5,A"></opcode>
+<opcode hex="CBB0" cmd="RES 6,B"></opcode>
+<opcode hex="CBB1" cmd="RES 6,C"></opcode>
+<opcode hex="CBB2" cmd="RES 6,D"></opcode>
+<opcode hex="CBB3" cmd="RES 6,E"></opcode>
+<opcode hex="CBB4" cmd="RES 6,H"></opcode>
+<opcode hex="CBB5" cmd="RES 6,L"></opcode>
+<opcode hex="CBB6" cmd="RES 6,(HL)"></opcode>
+<opcode hex="CBB7" cmd="RES 6,A"></opcode>
+<opcode hex="CBB8" cmd="RES 7,B"></opcode>
+<opcode hex="CBB9" cmd="RES 7,C"></opcode>
+<opcode hex="CBBA" cmd="RES 7,D"></opcode>
+<opcode hex="CBBB" cmd="RES 7,E"></opcode>
+<opcode hex="CBBC" cmd="RES 7,H"></opcode>
+<opcode hex="CBBD" cmd="RES 7,L"></opcode>
+<opcode hex="CBBE" cmd="RES 7,(HL)"></opcode>
+<opcode hex="CBBF" cmd="RES 7,A"></opcode>
+<opcode hex="CBC0" cmd="SET 0,B"></opcode>
+<opcode hex="CBC1" cmd="SET 0,C"></opcode>
+<opcode hex="CBC2" cmd="SET 0,D"></opcode>
+<opcode hex="CBC3" cmd="SET 0,E"></opcode>
+<opcode hex="CBC4" cmd="SET 0,H"></opcode>
+<opcode hex="CBC5" cmd="SET 0,L"></opcode>
+<opcode hex="CBC6" cmd="SET 0,(HL)"></opcode>
+<opcode hex="CBC7" cmd="SET 0,A"></opcode>
+<opcode hex="CBC8" cmd="SET 1,B"></opcode>
+<opcode hex="CBC9" cmd="SET 1,C"></opcode>
+<opcode hex="CBCA" cmd="SET 1,D"></opcode>
+<opcode hex="CBCB" cmd="SET 1,E"></opcode>
+<opcode hex="CBCC" cmd="SET 1,H"></opcode>
+<opcode hex="CBCD" cmd="SET 1,L"></opcode>
+<opcode hex="CBCE" cmd="SET 1,(HL)"></opcode>
+<opcode hex="CBCF" cmd="SET 1,A"></opcode>
+<opcode hex="CBD0" cmd="SET 2,B"></opcode>
+<opcode hex="CBD1" cmd="SET 2,C"></opcode>
+<opcode hex="CBD2" cmd="SET 2,D"></opcode>
+<opcode hex="CBD3" cmd="SET 2,E"></opcode>
+<opcode hex="CBD4" cmd="SET 2,H"></opcode>
+<opcode hex="CBD5" cmd="SET 2,L"></opcode>
+<opcode hex="CBD6" cmd="SET 2,(HL)"></opcode>
+<opcode hex="CBD7" cmd="SET 2,A"></opcode>
+<opcode hex="CBD8" cmd="SET 3,B"></opcode>
+<opcode hex="CBD9" cmd="SET 3,C"></opcode>
+<opcode hex="CBDA" cmd="SET 3,D"></opcode>
+<opcode hex="CBDB" cmd="SET 3,E"></opcode>
+<opcode hex="CBDC" cmd="SET 3,H"></opcode>
+<opcode hex="CBDD" cmd="SET 3,L"></opcode>
+<opcode hex="CBDE" cmd="SET 3,(HL)"></opcode>
+<opcode hex="CBDF" cmd="SET 3,A"></opcode>
+<opcode hex="CBE0" cmd="SET 4,B"></opcode>
+<opcode hex="CBE1" cmd="SET 4,C"></opcode>
+<opcode hex="CBE2" cmd="SET 4,D"></opcode>
+<opcode hex="CBE3" cmd="SET 4,E"></opcode>
+<opcode hex="CBE4" cmd="SET 4,H"></opcode>
+<opcode hex="CBE5" cmd="SET 4,L"></opcode>
+<opcode hex="CBE6" cmd="SET 4,(HL)"></opcode>
+<opcode hex="CBE7" cmd="SET 4,A"></opcode>
+<opcode hex="CBE8" cmd="SET 5,B"></opcode>
+<opcode hex="CBE9" cmd="SET 5,C"></opcode>
+<opcode hex="CBEA" cmd="SET 5,D"></opcode>
+<opcode hex="CBEB" cmd="SET 5,E"></opcode>
+<opcode hex="CBEC" cmd="SET 5,H"></opcode>
+<opcode hex="CBED" cmd="SET 5,L"></opcode>
+<opcode hex="CBEE" cmd="SET 5,(HL)"></opcode>
+<opcode hex="CBEF" cmd="SET 5,A"></opcode>
+<opcode hex="CBF0" cmd="SET 6,B"></opcode>
+<opcode hex="CBF1" cmd="SET 6,C"></opcode>
+<opcode hex="CBF2" cmd="SET 6,D"></opcode>
+<opcode hex="CBF3" cmd="SET 6,E"></opcode>
+<opcode hex="CBF4" cmd="SET 6,H"></opcode>
+<opcode hex="CBF5" cmd="SET 6,L"></opcode>
+<opcode hex="CBF6" cmd="SET 6,(HL)"></opcode>
+<opcode hex="CBF7" cmd="SET 6,A"></opcode>
+<opcode hex="CBF8" cmd="SET 7,B"></opcode>
+<opcode hex="CBF9" cmd="SET 7,C"></opcode>
+<opcode hex="CBFA" cmd="SET 7,D"></opcode>
+<opcode hex="CBFB" cmd="SET 7,E"></opcode>
+<opcode hex="CBFC" cmd="SET 7,H"></opcode>
+<opcode hex="CBFD" cmd="SET 7,L"></opcode>
+<opcode hex="CBFE" cmd="SET 7,(HL)"></opcode>
+<opcode hex="CBFF" cmd="SET 7,A"></opcode>
+<opcode hex="CCZZZZ" cmd="CALL Z,ZZZZ"></opcode>
+<opcode hex="CDZZZZ" cmd="CALL ZZZZ"></opcode>
+<opcode hex="CENN" cmd="ADC A,n"></opcode>
+<opcode hex="CF" cmd="RST 8H"></opcode>
+<opcode hex="D0" cmd="RET NC"></opcode>
+<opcode hex="D1" cmd="POP DE"></opcode>
+<opcode hex="D2ZZZZ" cmd="JP NC,ZZZZ"></opcode>
+<opcode hex="D3NN" cmd="OUT (n),A"></opcode>
+<opcode hex="D4ZZZZ" cmd="CALL NC,ZZZZ"></opcode>
+<opcode hex="D5" cmd="PUSH DE"></opcode>
+<opcode hex="D6NN" cmd="SUB n"></opcode>
+<opcode hex="D7" cmd="RST 10H"></opcode>
+<opcode hex="D8" cmd="RET C"></opcode>
+<opcode hex="D9" cmd="EXX"></opcode>
+<opcode hex="DAZZZZ" cmd="JP C,ZZZZ"></opcode>
+<opcode hex="DBNN" cmd="IN A,(n)"></opcode>
+<opcode hex="DCZZZZ" cmd="CALL C,ZZZZ"></opcode>
+<opcode hex="DD09" cmd="ADD IX,BC"></opcode>
+<opcode hex="DD19" cmd="ADD IX,DE"></opcode>
+<opcode hex="DD21NNNN" cmd="LD IX,nn"></opcode>
+<opcode hex="DD22LLLL" cmd="LD (nn),IX"></opcode>
+<opcode hex="DD23" cmd="INC IX"></opcode>
+<opcode hex="DD24" cmd="INC IXH*"></opcode>
+<opcode hex="DD25" cmd="DEC IXH*"></opcode>
+<opcode hex="DD26NN" cmd="LD IXH,n*"></opcode>
+<opcode hex="DD29" cmd="ADD IX,IX"></opcode>
+<opcode hex="DD2ALLLL" cmd="LD IX,(nn)"></opcode>
+<opcode hex="DD2B" cmd="DEC IX"></opcode>
+<opcode hex="DD2C" cmd="INC IXL*"></opcode>
+<opcode hex="DD2D" cmd="DEC IXL*"></opcode>
+<opcode hex="DD2ENN" cmd="LD IXL,n*"></opcode>
+<opcode hex="DD34HH" cmd="INC (IX+d)"></opcode>
+<opcode hex="DD35HH" cmd="DEC (IX+d)"></opcode>
+<opcode hex="DD36HHNN" cmd="LD (IX+d),n"></opcode>
+<opcode hex="DD39" cmd="ADD IX,SP"></opcode>
+<opcode hex="DD44" cmd="LD B,IXH*"></opcode>
+<opcode hex="DD45" cmd="LD B,IXL*"></opcode>
+<opcode hex="DD46HH" cmd="LD B,(IX+d)"></opcode>
+<opcode hex="DD4C" cmd="LD C,IXH*"></opcode>
+<opcode hex="DD4D" cmd="LD C,IXL*"></opcode>
+<opcode hex="DD4EHH" cmd="LD C,(IX+d)"></opcode>
+<opcode hex="DD54" cmd="LD D,IXH*"></opcode>
+<opcode hex="DD55" cmd="LD D,IXL*"></opcode>
+<opcode hex="DD56HH" cmd="LD D,(IX+d)"></opcode>
+<opcode hex="DD5C" cmd="LD E,IXH*"></opcode>
+<opcode hex="DD5D" cmd="LD E,IXL*"></opcode>
+<opcode hex="DD5EHH" cmd="LD E,(IX+d)"></opcode>
+<opcode hex="DD60" cmd="LD IXH,B*"></opcode>
+<opcode hex="DD61" cmd="LD IXH,C*"></opcode>
+<opcode hex="DD62" cmd="LD IXH,D*"></opcode>
+<opcode hex="DD63" cmd="LD IXH,E*"></opcode>
+<opcode hex="DD64" cmd="LD IXH,IXH*"></opcode>
+<opcode hex="DD65" cmd="LD IXH,IXL*"></opcode>
+<opcode hex="DD66HH" cmd="LD H,(IX+d)"></opcode>
+<opcode hex="DD67" cmd="LD IXH,A*"></opcode>
+<opcode hex="DD68" cmd="LD IXL,B*"></opcode>
+<opcode hex="DD69" cmd="LD IXL,C*"></opcode>
+<opcode hex="DD6A" cmd="LD IXL,D*"></opcode>
+<opcode hex="DD6B" cmd="LD IXL,E*"></opcode>
+<opcode hex="DD6C" cmd="LD IXL,IXH*"></opcode>
+<opcode hex="DD6D" cmd="LD IXL,IXL*"></opcode>
+<opcode hex="DD6EHH" cmd="LD L,(IX+d)"></opcode>
+<opcode hex="DD6F" cmd="LD IXL,A*"></opcode>
+<opcode hex="DD70HH" cmd="LD (IX+d),B"></opcode>
+<opcode hex="DD71HH" cmd="LD (IX+d),C"></opcode>
+<opcode hex="DD72HH" cmd="LD (IX+d),D"></opcode>
+<opcode hex="DD73HH" cmd="LD (IX+d),E"></opcode>
+<opcode hex="DD74HH" cmd="LD (IX+d),H"></opcode>
+<opcode hex="DD75HH" cmd="LD (IX+d),L"></opcode>
+<opcode hex="DD77HH" cmd="LD (IX+d),A"></opcode>
+<opcode hex="DD7C" cmd="LD A,IXH*"></opcode>
+<opcode hex="DD7D" cmd="LD A,IXL*"></opcode>
+<opcode hex="DD7EHH" cmd="LD A,(IX+d)"></opcode>
+<opcode hex="DD84" cmd="ADD A,IXH*"></opcode>
+<opcode hex="DD85" cmd="ADD A,IXL*"></opcode>
+<opcode hex="DD86HH" cmd="ADD A,(IX+d)"></opcode>
+<opcode hex="DD8C" cmd="ADC A,IXH*"></opcode>
+<opcode hex="DD8D" cmd="ADC A,IXL*"></opcode>
+<opcode hex="DD8EHH" cmd="ADC A,(IX+d)"></opcode>
+<opcode hex="DD94" cmd="SUB IXH*"></opcode>
+<opcode hex="DD95" cmd="SUB IXL*"></opcode>
+<opcode hex="DD96HH" cmd="SUB (IX+d)"></opcode>
+<opcode hex="DD9C" cmd="SBC A,IXH*"></opcode>
+<opcode hex="DD9D" cmd="SBC A,IXL*"></opcode>
+<opcode hex="DD9EHH" cmd="SBC A,(IX+d)"></opcode>
+<opcode hex="DDA4" cmd="AND IXH*"></opcode>
+<opcode hex="DDA5" cmd="AND IXL*"></opcode>
+<opcode hex="DDA6HH" cmd="AND (IX+d)"></opcode>
+<opcode hex="DDAC" cmd="XOR IXH*"></opcode>
+<opcode hex="DDAD" cmd="XOR IXL*"></opcode>
+<opcode hex="DDAEHH" cmd="XOR (IX+d)"></opcode>
+<opcode hex="DDB4" cmd="OR IXH*"></opcode>
+<opcode hex="DDB5" cmd="OR IXL*"></opcode>
+<opcode hex="DDB6HH" cmd="OR (IX+d)"></opcode>
+<opcode hex="DDBC" cmd="CP IXH*"></opcode>
+<opcode hex="DDBD" cmd="CP IXL*"></opcode>
+<opcode hex="DDBEHH" cmd="CP (IX+d)"></opcode>
+<opcode hex="DDCBHH00" cmd="LD B,RLC (IX+d)*"></opcode>
+<opcode hex="DDCBHH01" cmd="LD C,RLC (IX+d)*"></opcode>
+<opcode hex="DDCBHH02" cmd="LD D,RLC (IX+d)*"></opcode>
+<opcode hex="DDCBHH03" cmd="LD E,RLC (IX+d)*"></opcode>
+<opcode hex="DDCBHH04" cmd="LD H,RLC (IX+d)*"></opcode>
+<opcode hex="DDCBHH05" cmd="LD L,RLC (IX+d)*"></opcode>
+<opcode hex="DDCBHH06" cmd="RLC (IX+d)"></opcode>
+<opcode hex="DDCBHH07" cmd="LD A,RLC (IX+d)*"></opcode>
+<opcode hex="DDCBHH08" cmd="LD B,RRC (IX+d)*"></opcode>
+<opcode hex="DDCBHH09" cmd="LD C,RRC (IX+d)*"></opcode>
+<opcode hex="DDCBHH0A" cmd="LD D,RRC (IX+d)*"></opcode>
+<opcode hex="DDCBHH0B" cmd="LD E,RRC (IX+d)*"></opcode>
+<opcode hex="DDCBHH0C" cmd="LD H,RRC (IX+d)*"></opcode>
+<opcode hex="DDCBHH0D" cmd="LD L,RRC (IX+d)*"></opcode>
+<opcode hex="DDCBHH0E" cmd="RRC (IX+d)"></opcode>
+<opcode hex="DDCBHH0F" cmd="LD A,RRC (IX+d)*"></opcode>
+<opcode hex="DDCBHH10" cmd="LD B,RL (IX+d)*"></opcode>
+<opcode hex="DDCBHH11" cmd="LD C,RL (IX+d)*"></opcode>
+<opcode hex="DDCBHH12" cmd="LD D,RL (IX+d)*"></opcode>
+<opcode hex="DDCBHH13" cmd="LD E,RL (IX+d)*"></opcode>
+<opcode hex="DDCBHH14" cmd="LD H,RL (IX+d)*"></opcode>
+<opcode hex="DDCBHH15" cmd="LD L,RL (IX+d)*"></opcode>
+<opcode hex="DDCBHH16" cmd="RL (IX+d)"></opcode>
+<opcode hex="DDCBHH17" cmd="LD A,RL (IX+d)*"></opcode>
+<opcode hex="DDCBHH18" cmd="LD B,RR (IX+d)*"></opcode>
+<opcode hex="DDCBHH19" cmd="LD C,RR (IX+d)*"></opcode>
+<opcode hex="DDCBHH1A" cmd="LD D,RR (IX+d)*"></opcode>
+<opcode hex="DDCBHH1B" cmd="LD E,RR (IX+d)*"></opcode>
+<opcode hex="DDCBHH1C" cmd="LD H,RR (IX+d)*"></opcode>
+<opcode hex="DDCBHH1D" cmd="LD L,RR (IX+d)*"></opcode>
+<opcode hex="DDCBHH1E" cmd="RR (IX+d)"></opcode>
+<opcode hex="DDCBHH1F" cmd="LD A,RR (IX+d)*"></opcode>
+<opcode hex="DDCBHH20" cmd="LD B,SLA (IX+d)*"></opcode>
+<opcode hex="DDCBHH21" cmd="LD C,SLA (IX+d)*"></opcode>
+<opcode hex="DDCBHH22" cmd="LD D,SLA (IX+d)*"></opcode>
+<opcode hex="DDCBHH23" cmd="LD E,SLA (IX+d)*"></opcode>
+<opcode hex="DDCBHH24" cmd="LD H,SLA (IX+d)*"></opcode>
+<opcode hex="DDCBHH25" cmd="LD L,SLA (IX+d)*"></opcode>
+<opcode hex="DDCBHH26" cmd="SLA (IX+d)"></opcode>
+<opcode hex="DDCBHH27" cmd="LD A,SLA (IX+d)*"></opcode>
+<opcode hex="DDCBHH28" cmd="LD B,SRA (IX+d)*"></opcode>
+<opcode hex="DDCBHH29" cmd="LD C,SRA (IX+d)*"></opcode>
+<opcode hex="DDCBHH2A" cmd="LD D,SRA (IX+d)*"></opcode>
+<opcode hex="DDCBHH2B" cmd="LD E,SRA (IX+d)*"></opcode>
+<opcode hex="DDCBHH2C" cmd="LD H,SRA (IX+d)*"></opcode>
+<opcode hex="DDCBHH2D" cmd="LD L,SRA (IX+d)*"></opcode>
+<opcode hex="DDCBHH2E" cmd="SRA (IX+d)"></opcode>
+<opcode hex="DDCBHH2F" cmd="LD A,SRA (IX+d)*"></opcode>
+<opcode hex="DDCBHH30" cmd="LD B,SLL (IX+d)*"></opcode>
+<opcode hex="DDCBHH31" cmd="LD C,SLL (IX+d)*"></opcode>
+<opcode hex="DDCBHH32" cmd="LD D,SLL (IX+d)*"></opcode>
+<opcode hex="DDCBHH33" cmd="LD E,SLL (IX+d)*"></opcode>
+<opcode hex="DDCBHH34" cmd="LD H,SLL (IX+d)*"></opcode>
+<opcode hex="DDCBHH35" cmd="LD L,SLL (IX+d)*"></opcode>
+<opcode hex="DDCBHH36" cmd="SLL (IX+d)*"></opcode>
+<opcode hex="DDCBHH37" cmd="LD A,SLL (IX+d)*"></opcode>
+<opcode hex="DDCBHH38" cmd="LD B,SRL (IX+d)*"></opcode>
+<opcode hex="DDCBHH39" cmd="LD C,SRL (IX+d)*"></opcode>
+<opcode hex="DDCBHH3A" cmd="LD D,SRL (IX+d)*"></opcode>
+<opcode hex="DDCBHH3B" cmd="LD E,SRL (IX+d)*"></opcode>
+<opcode hex="DDCBHH3C" cmd="LD H,SRL (IX+d)*"></opcode>
+<opcode hex="DDCBHH3D" cmd="LD L,SRL (IX+d)*"></opcode>
+<opcode hex="DDCBHH3E" cmd="SRL (IX+d)"></opcode>
+<opcode hex="DDCBHH3F" cmd="LD A,SRL (IX+d)*"></opcode>
+<opcode hex="DDCBHH40" cmd="BIT 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH41" cmd="BIT 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH42" cmd="BIT 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH43" cmd="BIT 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH44" cmd="BIT 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH45" cmd="BIT 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH46" cmd="BIT 0,(IX+d)"></opcode>
+<opcode hex="DDCBHH47" cmd="BIT 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH48" cmd="BIT 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH49" cmd="BIT 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH4A" cmd="BIT 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH4B" cmd="BIT 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH4C" cmd="BIT 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH4D" cmd="BIT 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH4E" cmd="BIT 1,(IX+d)"></opcode>
+<opcode hex="DDCBHH4F" cmd="BIT 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH50" cmd="BIT 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH51" cmd="BIT 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH52" cmd="BIT 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH53" cmd="BIT 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH54" cmd="BIT 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH55" cmd="BIT 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH56" cmd="BIT 2,(IX+d)"></opcode>
+<opcode hex="DDCBHH57" cmd="BIT 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH58" cmd="BIT 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH59" cmd="BIT 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH5A" cmd="BIT 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH5B" cmd="BIT 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH5C" cmd="BIT 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH5D" cmd="BIT 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH5E" cmd="BIT 3,(IX+d)"></opcode>
+<opcode hex="DDCBHH5F" cmd="BIT 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH60" cmd="BIT 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHH61" cmd="BIT 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHH62" cmd="BIT 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHH63" cmd="BIT 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHH64" cmd="BIT 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHH65" cmd="BIT 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHH66" cmd="BIT 4,(IX+d)"></opcode>
+<opcode hex="DDCBHH67" cmd="BIT 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHH68" cmd="BIT 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHH69" cmd="BIT 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHH6A" cmd="BIT 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHH6B" cmd="BIT 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHH6C" cmd="BIT 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHH6D" cmd="BIT 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHH6E" cmd="BIT 5,(IX+d)"></opcode>
+<opcode hex="DDCBHH6F" cmd="BIT 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHH70" cmd="BIT 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHH71" cmd="BIT 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHH72" cmd="BIT 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHH73" cmd="BIT 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHH74" cmd="BIT 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHH75" cmd="BIT 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHH76" cmd="BIT 6,(IX+d)"></opcode>
+<opcode hex="DDCBHH77" cmd="BIT 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHH78" cmd="BIT 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHH79" cmd="BIT 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHH7A" cmd="BIT 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHH7B" cmd="BIT 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHH7C" cmd="BIT 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHH7D" cmd="BIT 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHH7E" cmd="BIT 7,(IX+d)"></opcode>
+<opcode hex="DDCBHH7F" cmd="BIT 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHH80" cmd="LD B,RES 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH81" cmd="LD C,RES 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH82" cmd="LD D,RES 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH83" cmd="LD E,RES 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH84" cmd="LD H,RES 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH85" cmd="LD L,RES 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH86" cmd="RES 0,(IX+d)"></opcode>
+<opcode hex="DDCBHH87" cmd="LD A,RES 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHH88" cmd="LD B,RES 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH89" cmd="LD C,RES 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH8A" cmd="LD D,RES 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH8B" cmd="LD E,RES 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH8C" cmd="LD H,RES 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH8D" cmd="LD L,RES 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH8E" cmd="RES 1,(IX+d)"></opcode>
+<opcode hex="DDCBHH8F" cmd="LD A,RES 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHH90" cmd="LD B,RES 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH91" cmd="LD C,RES 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH92" cmd="LD D,RES 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH93" cmd="LD E,RES 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH94" cmd="LD H,RES 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH95" cmd="LD L,RES 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH96" cmd="RES 2,(IX+d)"></opcode>
+<opcode hex="DDCBHH97" cmd="LD A,RES 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHH98" cmd="LD B,RES 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH99" cmd="LD C,RES 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH9A" cmd="LD D,RES 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH9B" cmd="LD E,RES 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH9C" cmd="LD H,RES 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH9D" cmd="LD L,RES 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHH9E" cmd="RES 3,(IX+d)"></opcode>
+<opcode hex="DDCBHH9F" cmd="LD A,RES 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA0" cmd="LD B,RES 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA1" cmd="LD C,RES 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA2" cmd="LD D,RES 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA3" cmd="LD E,RES 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA4" cmd="LD H,RES 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA5" cmd="LD L,RES 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA6" cmd="RES 4,(IX+d)"></opcode>
+<opcode hex="DDCBHHA7" cmd="LD A,RES 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA8" cmd="LD B,RES 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHA9" cmd="LD C,RES 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHAA" cmd="LD D,RES 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHAB" cmd="LD E,RES 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHAC" cmd="LD H,RES 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHAD" cmd="LD L,RES 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHAE" cmd="RES 5,(IX+d)"></opcode>
+<opcode hex="DDCBHHAF" cmd="LD A,RES 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB0" cmd="LD B,RES 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB1" cmd="LD C,RES 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB2" cmd="LD D,RES 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB3" cmd="LD E,RES 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB4" cmd="LD H,RES 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB5" cmd="LD L,RES 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB6" cmd="RES 6,(IX+d)"></opcode>
+<opcode hex="DDCBHHB7" cmd="LD A,RES 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB8" cmd="LD B,RES 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHB9" cmd="LD C,RES 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHBA" cmd="LD D,RES 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHBB" cmd="LD E,RES 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHBC" cmd="LD H,RES 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHBD" cmd="LD L,RES 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHBE" cmd="RES 7,(IX+d)"></opcode>
+<opcode hex="DDCBHHBF" cmd="LD A,RES 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC0" cmd="LD B,SET 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC1" cmd="LD C,SET 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC2" cmd="LD D,SET 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC3" cmd="LD E,SET 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC4" cmd="LD H,SET 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC5" cmd="LD L,SET 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC6" cmd="SET 0,(IX+d)"></opcode>
+<opcode hex="DDCBHHC7" cmd="LD A,SET 0,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC8" cmd="LD B,SET 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHHC9" cmd="LD C,SET 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHHCA" cmd="LD D,SET 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHHCB" cmd="LD E,SET 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHHCC" cmd="LD H,SET 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHHCD" cmd="LD L,SET 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHHCE" cmd="SET 1,(IX+d)"></opcode>
+<opcode hex="DDCBHHCF" cmd="LD A,SET 1,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD0" cmd="LD B,SET 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD1" cmd="LD C,SET 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD2" cmd="LD D,SET 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD3" cmd="LD E,SET 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD4" cmd="LD H,SET 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD5" cmd="LD L,SET 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD6" cmd="SET 2,(IX+d)"></opcode>
+<opcode hex="DDCBHHD7" cmd="LD A,SET 2,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD8" cmd="LD B,SET 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHHD9" cmd="LD C,SET 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHHDA" cmd="LD D,SET 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHHDB" cmd="LD E,SET 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHHDC" cmd="LD H,SET 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHHDD" cmd="LD L,SET 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHHDE" cmd="SET 3,(IX+d)"></opcode>
+<opcode hex="DDCBHHDF" cmd="LD A,SET 3,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE0" cmd="LD B,SET 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE1" cmd="LD C,SET 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE2" cmd="LD D,SET 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE3" cmd="LD E,SET 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE4" cmd="LD H,SET 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE5" cmd="LD L,SET 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE6" cmd="SET 4,(IX+d)"></opcode>
+<opcode hex="DDCBHHE7" cmd="LD A,SET 4,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE8" cmd="LD B,SET 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHE9" cmd="LD C,SET 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHEA" cmd="LD D,SET 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHEB" cmd="LD E,SET 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHEC" cmd="LD H,SET 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHED" cmd="LD L,SET 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHEE" cmd="SET 5,(IX+d)"></opcode>
+<opcode hex="DDCBHHEF" cmd="LD A,SET 5,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF0" cmd="LD B,SET 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF1" cmd="LD C,SET 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF2" cmd="LD D,SET 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF3" cmd="LD E,SET 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF4" cmd="LD H,SET 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF5" cmd="LD L,SET 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF6" cmd="SET 6,(IX+d)"></opcode>
+<opcode hex="DDCBHHF7" cmd="LD A,SET 6,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF8" cmd="LD B,SET 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHF9" cmd="LD C,SET 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHFA" cmd="LD D,SET 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHFB" cmd="LD E,SET 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHFC" cmd="LD H,SET 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHFD" cmd="LD L,SET 7,(IX+d)*"></opcode>
+<opcode hex="DDCBHHFE" cmd="SET 7,(IX+d)"></opcode>
+<opcode hex="DDCBHHFF" cmd="LD A,SET 7,(IX+d)*"></opcode>
+<opcode hex="DDE1" cmd="POP IX"></opcode>
+<opcode hex="DDE3" cmd="EX (SP),IX"></opcode>
+<opcode hex="DDE5" cmd="PUSH IX"></opcode>
+<opcode hex="DDE9" cmd="JP (IX)"></opcode>
+<opcode hex="DDF9" cmd="LD SP,IX"></opcode>
+<opcode hex="DENN" cmd="SBC A,n"></opcode>
+<opcode hex="DF" cmd="RST 18H"></opcode>
+<opcode hex="E0" cmd="RET PO"></opcode>
+<opcode hex="E1" cmd="POP HL"></opcode>
+<opcode hex="E2ZZZZ" cmd="JP PO,ZZZZ"></opcode>
+<opcode hex="E3" cmd="EX (SP),HL"></opcode>
+<opcode hex="E4ZZZZ" cmd="CALL PO,ZZZZ"></opcode>
+<opcode hex="E5" cmd="PUSH HL"></opcode>
+<opcode hex="E6NN" cmd="AND n"></opcode>
+<opcode hex="E7" cmd="RST 20H"></opcode>
+<opcode hex="E8" cmd="RET PE"></opcode>
+<opcode hex="E9" cmd="JP (HL)"></opcode>
+<opcode hex="EAZZZZ" cmd="JP PE,ZZZZ"></opcode>
+<opcode hex="EB" cmd="EX DE,HL"></opcode>
+<opcode hex="ECZZZZ" cmd="CALL PE,ZZZZ"></opcode>
+<opcode hex="ED40" cmd="IN B,(C)"></opcode>
+<opcode hex="ED41" cmd="OUT (C),B"></opcode>
+<opcode hex="ED42" cmd="SBC HL,BC"></opcode>
+<opcode hex="ED43LLLL" cmd="LD (nn),BC"></opcode>
+<opcode hex="ED44" cmd="NEG"></opcode>
+<opcode hex="ED45" cmd="RETN"></opcode>
+<opcode hex="ED46" cmd="IM 0"></opcode>
+<opcode hex="ED47" cmd="LD I,A"></opcode>
+<opcode hex="ED48" cmd="IN C,(C)"></opcode>
+<opcode hex="ED49" cmd="OUT (C),C"></opcode>
+<opcode hex="ED4A" cmd="ADC HL,BC"></opcode>
+<opcode hex="ED4BLLLL" cmd="LD BC,(nn)"></opcode>
+<opcode hex="ED4C" cmd="NEG*"></opcode>
+<opcode hex="ED4D" cmd="RETI"></opcode>
+<opcode hex="ED4E" cmd="IM 0/1*"></opcode>
+<opcode hex="ED4F" cmd="LD R,A"></opcode>
+<opcode hex="ED50" cmd="IN D,(C)"></opcode>
+<opcode hex="ED51" cmd="OUT (C),D"></opcode>
+<opcode hex="ED52" cmd="SBC HL,DE"></opcode>
+<opcode hex="ED53LLLL" cmd="LD (nn),DE"></opcode>
+<opcode hex="ED54" cmd="NEG*"></opcode>
+<opcode hex="ED55" cmd="RETN*"></opcode>
+<opcode hex="ED56" cmd="IM 1"></opcode>
+<opcode hex="ED57" cmd="LD A,I"></opcode>
+<opcode hex="ED58" cmd="IN E,(C)"></opcode>
+<opcode hex="ED59" cmd="OUT (C),E"></opcode>
+<opcode hex="ED5A" cmd="ADC HL,DE"></opcode>
+<opcode hex="ED5BLLLL" cmd="LD DE,(nn)"></opcode>
+<opcode hex="ED5C" cmd="NEG*"></opcode>
+<opcode hex="ED5D" cmd="RETN*"></opcode>
+<opcode hex="ED5E" cmd="IM 2"></opcode>
+<opcode hex="ED5F" cmd="LD A,R"></opcode>
+<opcode hex="ED60" cmd="IN H,(C)"></opcode>
+<opcode hex="ED61" cmd="OUT (C),H"></opcode>
+<opcode hex="ED62" cmd="SBC HL,HL"></opcode>
+<opcode hex="ED63LLLL" cmd="LD (nn),HL"></opcode>
+<opcode hex="ED64" cmd="NEG*"></opcode>
+<opcode hex="ED65" cmd="RETN*"></opcode>
+<opcode hex="ED66" cmd="IM 0*"></opcode>
+<opcode hex="ED67" cmd="RRD"></opcode>
+<opcode hex="ED68" cmd="IN L,(C)"></opcode>
+<opcode hex="ED69" cmd="OUT (C),L"></opcode>
+<opcode hex="ED6A" cmd="ADC HL,HL"></opcode>
+<opcode hex="ED6BLLLL" cmd="LD HL,(nn)"></opcode>
+<opcode hex="ED6C" cmd="NEG*"></opcode>
+<opcode hex="ED6D" cmd="RETN*"></opcode>
+<opcode hex="ED6E" cmd="IM 0/1*"></opcode>
+<opcode hex="ED6F" cmd="RLD"></opcode>
+<opcode hex="ED70" cmd="IN F,(C)* / IN (C)*"></opcode>
+<opcode hex="ED71" cmd="OUT (C),0*"></opcode>
+<opcode hex="ED72" cmd="SBC HL,SP"></opcode>
+<opcode hex="ED73LLLL" cmd="LD (nn),SP"></opcode>
+<opcode hex="ED74" cmd="NEG*"></opcode>
+<opcode hex="ED75" cmd="RETN*"></opcode>
+<opcode hex="ED76" cmd="IM 1*"></opcode>
+<opcode hex="ED78" cmd="IN A,(C)"></opcode>
+<opcode hex="ED79" cmd="OUT (C),A"></opcode>
+<opcode hex="ED7A" cmd="ADC HL,SP"></opcode>
+<opcode hex="ED7BLLLL" cmd="LD SP,(nn)"></opcode>
+<opcode hex="ED7C" cmd="NEG*"></opcode>
+<opcode hex="ED7D" cmd="RETN*"></opcode>
+<opcode hex="ED7E" cmd="IM 2*"></opcode>
+<opcode hex="EDA0" cmd="LDI"></opcode>
+<opcode hex="EDA1" cmd="CPI"></opcode>
+<opcode hex="EDA2" cmd="INI"></opcode>
+<opcode hex="EDA3" cmd="OUTI"></opcode>
+<opcode hex="EDA8" cmd="LDD"></opcode>
+<opcode hex="EDA9" cmd="CPD"></opcode>
+<opcode hex="EDAA" cmd="IND"></opcode>
+<opcode hex="EDAB" cmd="OUTD"></opcode>
+<opcode hex="EDB0" cmd="LDIR"></opcode>
+<opcode hex="EDB1" cmd="CPIR"></opcode>
+<opcode hex="EDB2" cmd="INIR"></opcode>
+<opcode hex="EDB3" cmd="OTIR"></opcode>
+<opcode hex="EDB8" cmd="LDDR"></opcode>
+<opcode hex="EDB9" cmd="CPDR"></opcode>
+<opcode hex="EDBA" cmd="INDR"></opcode>
+<opcode hex="EDBB" cmd="OTDR"></opcode>
+<opcode hex="EENN" cmd="XOR n"></opcode>
+<opcode hex="EF" cmd="RST 28H"></opcode>
+<opcode hex="F0" cmd="RET P"></opcode>
+<opcode hex="F1" cmd="POP AF"></opcode>
+<opcode hex="F2ZZZZ" cmd="JP P,ZZZZ"></opcode>
+<opcode hex="F3" cmd="DI"></opcode>
+<opcode hex="F4ZZZZ" cmd="CALL P,ZZZZ"></opcode>
+<opcode hex="F5" cmd="PUSH AF"></opcode>
+<opcode hex="F6NN" cmd="OR n"></opcode>
+<opcode hex="F7" cmd="RST 30H"></opcode>
+<opcode hex="F8" cmd="RET M"></opcode>
+<opcode hex="F9" cmd="LD SP,HL"></opcode>
+<opcode hex="FAZZZZ" cmd="JP M,ZZZZ"></opcode>
+<opcode hex="FB" cmd="EI"></opcode>
+<opcode hex="FCZZZZ" cmd="CALL M,ZZZZ"></opcode>
+<opcode hex="FD09" cmd="ADD IY,BC"></opcode>
+<opcode hex="FD19" cmd="ADD IY,DE"></opcode>
+<opcode hex="FD21NNNN" cmd="LD IY,nn"></opcode>
+<opcode hex="FD22LLLL" cmd="LD (nn),IY"></opcode>
+<opcode hex="FD23" cmd="INC IY"></opcode>
+<opcode hex="FD24" cmd="INC IYH*"></opcode>
+<opcode hex="FD25" cmd="DEC IYH*"></opcode>
+<opcode hex="FD26NN" cmd="LD IYH,n*"></opcode>
+<opcode hex="FD29" cmd="ADD IY,IY"></opcode>
+<opcode hex="FD2ALLLL" cmd="LD IY,(nn)"></opcode>
+<opcode hex="FD2B" cmd="DEC IY"></opcode>
+<opcode hex="FD2C" cmd="INC IYL*"></opcode>
+<opcode hex="FD2D" cmd="DEC IYL*"></opcode>
+<opcode hex="FD2ENN" cmd="LD IYL,n*"></opcode>
+<opcode hex="FD34HH" cmd="INC (IY+d)"></opcode>
+<opcode hex="FD35HH" cmd="DEC (IY+d)"></opcode>
+<opcode hex="FD36HHNN" cmd="LD (IY+d),n"></opcode>
+<opcode hex="FD39" cmd="ADD IY,SP"></opcode>
+<opcode hex="FD44" cmd="LD B,IYH*"></opcode>
+<opcode hex="FD45" cmd="LD B,IYL*"></opcode>
+<opcode hex="FD46HH" cmd="LD B,(IY+d)"></opcode>
+<opcode hex="FD4C" cmd="LD C,IYH*"></opcode>
+<opcode hex="FD4D" cmd="LD C,IYL*"></opcode>
+<opcode hex="FD4EHH" cmd="LD C,(IY+d)"></opcode>
+<opcode hex="FD54" cmd="LD D,IYH*"></opcode>
+<opcode hex="FD55" cmd="LD D,IYL*"></opcode>
+<opcode hex="FD56HH" cmd="LD D,(IY+d)"></opcode>
+<opcode hex="FD5C" cmd="LD E,IYH*"></opcode>
+<opcode hex="FD5D" cmd="LD E,IYL*"></opcode>
+<opcode hex="FD5EHH" cmd="LD E,(IY+d)"></opcode>
+<opcode hex="FD60" cmd="LD IYH,B*"></opcode>
+<opcode hex="FD61" cmd="LD IYH,C*"></opcode>
+<opcode hex="FD62" cmd="LD IYH,D*"></opcode>
+<opcode hex="FD63" cmd="LD IYH,E*"></opcode>
+<opcode hex="FD64" cmd="LD IYH,IYH*"></opcode>
+<opcode hex="FD65" cmd="LD IYH,IYL*"></opcode>
+<opcode hex="FD66HH" cmd="LD H,(IY+d)"></opcode>
+<opcode hex="FD67" cmd="LD IYH,A*"></opcode>
+<opcode hex="FD68" cmd="LD IYL,B*"></opcode>
+<opcode hex="FD69" cmd="LD IYL,C*"></opcode>
+<opcode hex="FD6A" cmd="LD IYL,D*"></opcode>
+<opcode hex="FD6B" cmd="LD IYL,E*"></opcode>
+<opcode hex="FD6C" cmd="LD IYL,IYH*"></opcode>
+<opcode hex="FD6D" cmd="LD IYL,IYL*"></opcode>
+<opcode hex="FD6EHH" cmd="LD L,(IY+d)"></opcode>
+<opcode hex="FD6F" cmd="LD IYL,A*"></opcode>
+<opcode hex="FD70HH" cmd="LD (IY+d),B"></opcode>
+<opcode hex="FD71HH" cmd="LD (IY+d),C"></opcode>
+<opcode hex="FD72HH" cmd="LD (IY+d),D"></opcode>
+<opcode hex="FD73HH" cmd="LD (IY+d),E"></opcode>
+<opcode hex="FD74HH" cmd="LD (IY+d),H"></opcode>
+<opcode hex="FD75HH" cmd="LD (IY+d),L"></opcode>
+<opcode hex="FD77HH" cmd="LD (IY+d),A"></opcode>
+<opcode hex="FD7C" cmd="LD A,IYH*"></opcode>
+<opcode hex="FD7D" cmd="LD A,IYL*"></opcode>
+<opcode hex="FD7EHH" cmd="LD A,(IY+d)"></opcode>
+<opcode hex="FD84" cmd="ADD A,IYH*"></opcode>
+<opcode hex="FD85" cmd="ADD A,IYL*"></opcode>
+<opcode hex="FD86HH" cmd="ADD A,(IY+d)"></opcode>
+<opcode hex="FD8C" cmd="ADC A,IYH*"></opcode>
+<opcode hex="FD8D" cmd="ADC A,IYL*"></opcode>
+<opcode hex="FD8EHH" cmd="ADC A,(IY+d)"></opcode>
+<opcode hex="FD94" cmd="SUB IYH*"></opcode>
+<opcode hex="FD95" cmd="SUB IYL*"></opcode>
+<opcode hex="FD96HH" cmd="SUB (IY+d)"></opcode>
+<opcode hex="FD9C" cmd="SBC A,IYH*"></opcode>
+<opcode hex="FD9D" cmd="SBC A,IYL*"></opcode>
+<opcode hex="FD9EHH" cmd="SBC A,(IY+d)"></opcode>
+<opcode hex="FDA4" cmd="AND IYH*"></opcode>
+<opcode hex="FDA5" cmd="AND IYL*"></opcode>
+<opcode hex="FDA6HH" cmd="AND (IY+d)"></opcode>
+<opcode hex="FDAC" cmd="XOR IYH*"></opcode>
+<opcode hex="FDAD" cmd="XOR IYL*"></opcode>
+<opcode hex="FDAEHH" cmd="XOR (IY+d)"></opcode>
+<opcode hex="FDB4" cmd="OR IYH*"></opcode>
+<opcode hex="FDB5" cmd="OR IYL*"></opcode>
+<opcode hex="FDB6HH" cmd="OR (IY+d)"></opcode>
+<opcode hex="FDBC" cmd="CP IYH*"></opcode>
+<opcode hex="FDBD" cmd="CP IYL*"></opcode>
+<opcode hex="FDBEHH" cmd="CP (IY+d)"></opcode>
+<opcode hex="FDCBHH00" cmd="LD B,RLC (IY+d)*"></opcode>
+<opcode hex="FDCBHH01" cmd="LD C,RLC (IY+d)*"></opcode>
+<opcode hex="FDCBHH02" cmd="LD D,RLC (IY+d)*"></opcode>
+<opcode hex="FDCBHH03" cmd="LD E,RLC (IY+d)*"></opcode>
+<opcode hex="FDCBHH04" cmd="LD H,RLC (IY+d)*"></opcode>
+<opcode hex="FDCBHH05" cmd="LD L,RLC (IY+d)*"></opcode>
+<opcode hex="FDCBHH06" cmd="RLC (IY+d)"></opcode>
+<opcode hex="FDCBHH07" cmd="LD A,RLC (IY+d)*"></opcode>
+<opcode hex="FDCBHH08" cmd="LD B,RRC (IY+d)*"></opcode>
+<opcode hex="FDCBHH09" cmd="LD C,RRC (IY+d)*"></opcode>
+<opcode hex="FDCBHH0A" cmd="LD D,RRC (IY+d)*"></opcode>
+<opcode hex="FDCBHH0B" cmd="LD E,RRC (IY+d)*"></opcode>
+<opcode hex="FDCBHH0C" cmd="LD H,RRC (IY+d)*"></opcode>
+<opcode hex="FDCBHH0D" cmd="LD L,RRC (IY+d)*"></opcode>
+<opcode hex="FDCBHH0E" cmd="RRC (IY+d)"></opcode>
+<opcode hex="FDCBHH0F" cmd="LD A,RRC (IY+d)*"></opcode>
+<opcode hex="FDCBHH10" cmd="LD B,RL (IY+d)*"></opcode>
+<opcode hex="FDCBHH11" cmd="LD C,RL (IY+d)*"></opcode>
+<opcode hex="FDCBHH12" cmd="LD D,RL (IY+d)*"></opcode>
+<opcode hex="FDCBHH13" cmd="LD E,RL (IY+d)*"></opcode>
+<opcode hex="FDCBHH14" cmd="LD H,RL (IY+d)*"></opcode>
+<opcode hex="FDCBHH15" cmd="LD L,RL (IY+d)*"></opcode>
+<opcode hex="FDCBHH16" cmd="RL (IY+d)"></opcode>
+<opcode hex="FDCBHH17" cmd="LD A,RL (IY+d)*"></opcode>
+<opcode hex="FDCBHH18" cmd="LD B,RR (IY+d)*"></opcode>
+<opcode hex="FDCBHH19" cmd="LD C,RR (IY+d)*"></opcode>
+<opcode hex="FDCBHH1A" cmd="LD D,RR (IY+d)*"></opcode>
+<opcode hex="FDCBHH1B" cmd="LD E,RR (IY+d)*"></opcode>
+<opcode hex="FDCBHH1C" cmd="LD H,RR (IY+d)*"></opcode>
+<opcode hex="FDCBHH1D" cmd="LD L,RR (IY+d)*"></opcode>
+<opcode hex="FDCBHH1E" cmd="RR (IY+d)"></opcode>
+<opcode hex="FDCBHH1F" cmd="LD A,RR (IY+d)*"></opcode>
+<opcode hex="FDCBHH20" cmd="LD B,SLA (IY+d)*"></opcode>
+<opcode hex="FDCBHH21" cmd="LD C,SLA (IY+d)*"></opcode>
+<opcode hex="FDCBHH22" cmd="LD D,SLA (IY+d)*"></opcode>
+<opcode hex="FDCBHH23" cmd="LD E,SLA (IY+d)*"></opcode>
+<opcode hex="FDCBHH24" cmd="LD H,SLA (IY+d)*"></opcode>
+<opcode hex="FDCBHH25" cmd="LD L,SLA (IY+d)*"></opcode>
+<opcode hex="FDCBHH26" cmd="SLA (IY+d)"></opcode>
+<opcode hex="FDCBHH27" cmd="LD A,SLA (IY+d)*"></opcode>
+<opcode hex="FDCBHH28" cmd="LD B,SRA (IY+d)*"></opcode>
+<opcode hex="FDCBHH29" cmd="LD C,SRA (IY+d)*"></opcode>
+<opcode hex="FDCBHH2A" cmd="LD D,SRA (IY+d)*"></opcode>
+<opcode hex="FDCBHH2B" cmd="LD E,SRA (IY+d)*"></opcode>
+<opcode hex="FDCBHH2C" cmd="LD H,SRA (IY+d)*"></opcode>
+<opcode hex="FDCBHH2D" cmd="LD L,SRA (IY+d)*"></opcode>
+<opcode hex="FDCBHH2E" cmd="SRA (IY+d)"></opcode>
+<opcode hex="FDCBHH2F" cmd="LD A,SRA (IY+d)*"></opcode>
+<opcode hex="FDCBHH30" cmd="LD B,SLL (IY+d)*"></opcode>
+<opcode hex="FDCBHH31" cmd="LD C,SLL (IY+d)*"></opcode>
+<opcode hex="FDCBHH32" cmd="LD D,SLL (IY+d)*"></opcode>
+<opcode hex="FDCBHH33" cmd="LD E,SLL (IY+d)*"></opcode>
+<opcode hex="FDCBHH34" cmd="LD H,SLL (IY+d)*"></opcode>
+<opcode hex="FDCBHH35" cmd="LD L,SLL (IY+d)*"></opcode>
+<opcode hex="FDCBHH36" cmd="SLL (IY+d)*"></opcode>
+<opcode hex="FDCBHH37" cmd="LD A,SLL (IY+d)*"></opcode>
+<opcode hex="FDCBHH38" cmd="LD B,SRL (IY+d)*"></opcode>
+<opcode hex="FDCBHH39" cmd="LD C,SRL (IY+d)*"></opcode>
+<opcode hex="FDCBHH3A" cmd="LD D,SRL (IY+d)*"></opcode>
+<opcode hex="FDCBHH3B" cmd="LD E,SRL (IY+d)*"></opcode>
+<opcode hex="FDCBHH3C" cmd="LD H,SRL (IY+d)*"></opcode>
+<opcode hex="FDCBHH3D" cmd="LD L,SRL (IY+d)*"></opcode>
+<opcode hex="FDCBHH3E" cmd="SRL (IY+d)"></opcode>
+<opcode hex="FDCBHH3F" cmd="LD A,SRL (IY+d)*"></opcode>
+<opcode hex="FDCBHH40" cmd="BIT 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH41" cmd="BIT 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH42" cmd="BIT 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH43" cmd="BIT 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH44" cmd="BIT 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH45" cmd="BIT 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH46" cmd="BIT 0,(IY+d)"></opcode>
+<opcode hex="FDCBHH47" cmd="BIT 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH48" cmd="BIT 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH49" cmd="BIT 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH4A" cmd="BIT 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH4B" cmd="BIT 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH4C" cmd="BIT 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH4D" cmd="BIT 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH4E" cmd="BIT 1,(IY+d)"></opcode>
+<opcode hex="FDCBHH4F" cmd="BIT 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH50" cmd="BIT 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH51" cmd="BIT 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH52" cmd="BIT 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH53" cmd="BIT 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH54" cmd="BIT 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH55" cmd="BIT 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH56" cmd="BIT 2,(IY+d)"></opcode>
+<opcode hex="FDCBHH57" cmd="BIT 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH58" cmd="BIT 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH59" cmd="BIT 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH5A" cmd="BIT 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH5B" cmd="BIT 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH5C" cmd="BIT 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH5D" cmd="BIT 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH5E" cmd="BIT 3,(IY+d)"></opcode>
+<opcode hex="FDCBHH5F" cmd="BIT 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH60" cmd="BIT 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHH61" cmd="BIT 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHH62" cmd="BIT 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHH63" cmd="BIT 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHH64" cmd="BIT 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHH65" cmd="BIT 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHH66" cmd="BIT 4,(IY+d)"></opcode>
+<opcode hex="FDCBHH67" cmd="BIT 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHH68" cmd="BIT 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHH69" cmd="BIT 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHH6A" cmd="BIT 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHH6B" cmd="BIT 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHH6C" cmd="BIT 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHH6D" cmd="BIT 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHH6E" cmd="BIT 5,(IY+d)"></opcode>
+<opcode hex="FDCBHH6F" cmd="BIT 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHH70" cmd="BIT 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHH71" cmd="BIT 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHH72" cmd="BIT 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHH73" cmd="BIT 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHH74" cmd="BIT 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHH75" cmd="BIT 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHH76" cmd="BIT 6,(IY+d)"></opcode>
+<opcode hex="FDCBHH77" cmd="BIT 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHH78" cmd="BIT 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHH79" cmd="BIT 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHH7A" cmd="BIT 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHH7B" cmd="BIT 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHH7C" cmd="BIT 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHH7D" cmd="BIT 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHH7E" cmd="BIT 7,(IY+d)"></opcode>
+<opcode hex="FDCBHH7F" cmd="BIT 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHH80" cmd="LD B,RES 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH81" cmd="LD C,RES 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH82" cmd="LD D,RES 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH83" cmd="LD E,RES 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH84" cmd="LD H,RES 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH85" cmd="LD L,RES 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH86" cmd="RES 0,(IY+d)"></opcode>
+<opcode hex="FDCBHH87" cmd="LD A,RES 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHH88" cmd="LD B,RES 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH89" cmd="LD C,RES 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH8A" cmd="LD D,RES 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH8B" cmd="LD E,RES 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH8C" cmd="LD H,RES 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH8D" cmd="LD L,RES 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH8E" cmd="RES 1,(IY+d)"></opcode>
+<opcode hex="FDCBHH8F" cmd="LD A,RES 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHH90" cmd="LD B,RES 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH91" cmd="LD C,RES 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH92" cmd="LD D,RES 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH93" cmd="LD E,RES 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH94" cmd="LD H,RES 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH95" cmd="LD L,RES 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH96" cmd="RES 2,(IY+d)"></opcode>
+<opcode hex="FDCBHH97" cmd="LD A,RES 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHH98" cmd="LD B,RES 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH99" cmd="LD C,RES 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH9A" cmd="LD D,RES 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH9B" cmd="LD E,RES 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH9C" cmd="LD H,RES 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH9D" cmd="LD L,RES 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHH9E" cmd="RES 3,(IY+d)"></opcode>
+<opcode hex="FDCBHH9F" cmd="LD A,RES 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA0" cmd="LD B,RES 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA1" cmd="LD C,RES 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA2" cmd="LD D,RES 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA3" cmd="LD E,RES 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA4" cmd="LD H,RES 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA5" cmd="LD L,RES 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA6" cmd="RES 4,(IY+d)"></opcode>
+<opcode hex="FDCBHHA7" cmd="LD A,RES 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA8" cmd="LD B,RES 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHA9" cmd="LD C,RES 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHAA" cmd="LD D,RES 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHAB" cmd="LD E,RES 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHAC" cmd="LD H,RES 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHAD" cmd="LD L,RES 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHAE" cmd="RES 5,(IY+d)"></opcode>
+<opcode hex="FDCBHHAF" cmd="LD A,RES 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB0" cmd="LD B,RES 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB1" cmd="LD C,RES 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB2" cmd="LD D,RES 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB3" cmd="LD E,RES 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB4" cmd="LD H,RES 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB5" cmd="LD L,RES 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB6" cmd="RES 6,(IY+d)"></opcode>
+<opcode hex="FDCBHHB7" cmd="LD A,RES 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB8" cmd="LD B,RES 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHB9" cmd="LD C,RES 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHBA" cmd="LD D,RES 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHBB" cmd="LD E,RES 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHBC" cmd="LD H,RES 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHBD" cmd="LD L,RES 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHBE" cmd="RES 7,(IY+d)"></opcode>
+<opcode hex="FDCBHHBF" cmd="LD A,RES 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC0" cmd="LD B,SET 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC1" cmd="LD C,SET 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC2" cmd="LD D,SET 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC3" cmd="LD E,SET 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC4" cmd="LD H,SET 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC5" cmd="LD L,SET 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC6" cmd="SET 0,(IY+d)"></opcode>
+<opcode hex="FDCBHHC7" cmd="LD A,SET 0,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC8" cmd="LD B,SET 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHHC9" cmd="LD C,SET 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHHCA" cmd="LD D,SET 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHHCB" cmd="LD E,SET 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHHCC" cmd="LD H,SET 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHHCD" cmd="LD L,SET 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHHCE" cmd="SET 1,(IY+d)"></opcode>
+<opcode hex="FDCBHHCF" cmd="LD A,SET 1,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD0" cmd="LD B,SET 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD1" cmd="LD C,SET 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD2" cmd="LD D,SET 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD3" cmd="LD E,SET 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD4" cmd="LD H,SET 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD5" cmd="LD L,SET 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD6" cmd="SET 2,(IY+d)"></opcode>
+<opcode hex="FDCBHHD7" cmd="LD A,SET 2,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD8" cmd="LD B,SET 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHHD9" cmd="LD C,SET 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHHDA" cmd="LD D,SET 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHHDB" cmd="LD E,SET 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHHDC" cmd="LD H,SET 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHHDD" cmd="LD L,SET 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHHDE" cmd="SET 3,(IY+d)"></opcode>
+<opcode hex="FDCBHHDF" cmd="LD A,SET 3,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE0" cmd="LD B,SET 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE1" cmd="LD C,SET 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE2" cmd="LD D,SET 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE3" cmd="LD E,SET 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE4" cmd="LD H,SET 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE5" cmd="LD L,SET 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE6" cmd="SET 4,(IY+d)"></opcode>
+<opcode hex="FDCBHHE7" cmd="LD A,SET 4,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE8" cmd="LD B,SET 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHE9" cmd="LD C,SET 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHEA" cmd="LD D,SET 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHEB" cmd="LD E,SET 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHEC" cmd="LD H,SET 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHED" cmd="LD L,SET 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHEE" cmd="SET 5,(IY+d)"></opcode>
+<opcode hex="FDCBHHEF" cmd="LD A,SET 5,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF0" cmd="LD B,SET 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF1" cmd="LD C,SET 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF2" cmd="LD D,SET 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF3" cmd="LD E,SET 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF4" cmd="LD H,SET 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF5" cmd="LD L,SET 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF6" cmd="SET 6,(IY+d)"></opcode>
+<opcode hex="FDCBHHF7" cmd="LD A,SET 6,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF8" cmd="LD B,SET 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHF9" cmd="LD C,SET 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHFA" cmd="LD D,SET 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHFB" cmd="LD E,SET 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHFC" cmd="LD H,SET 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHFD" cmd="LD L,SET 7,(IY+d)*"></opcode>
+<opcode hex="FDCBHHFE" cmd="SET 7,(IY+d)"></opcode>
+<opcode hex="FDCBHHFF" cmd="LD A,SET 7,(IY+d)*"></opcode>
+<opcode hex="FDE1" cmd="POP IY"></opcode>
+<opcode hex="FDE3" cmd="EX (SP),IY"></opcode>
+<opcode hex="FDE5" cmd="PUSH IY"></opcode>
+<opcode hex="FDE9" cmd="JP (IY)"></opcode>
+<opcode hex="FDF9" cmd="LD SP,IY"></opcode>
+<opcode hex="FENN" cmd="CP n"></opcode>
+<opcode hex="FF" cmd="RST 38H"></opcode>
+</opcodes>
