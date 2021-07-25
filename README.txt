@@ -1,5 +1,5 @@
 This is the PFILE viewer and disassembler (Java SWT version)
-by Graham Salkin 2020-2021.
+by Graham Salkin 2018-2021.
 
 Changelog:
 23 Jul 2021 - Modified to do away with the JAVAX dependancy so it will run on openJDK (To do this i used the SWT tooklit instead)
