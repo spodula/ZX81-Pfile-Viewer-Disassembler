@@ -13,7 +13,6 @@ package viewer.pages;
  * GDS 23-07-2021 - Changed to take into account code at the end of basic area that is just
  * 					corrupt basic lines, EG adventure-C
  */
-//TODO: sometimes entry point can be skipped of previous bytes identified as ASM.
 
 import java.util.Hashtable;
 import java.util.Vector;
