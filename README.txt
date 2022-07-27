@@ -2,6 +2,7 @@ This is the PFILE viewer and disassembler (Java SWT version)
 by Graham Salkin 2018-2021.
 
 Changelog:
+27 Jul 2022 - Fixed pom with correct SWT library and shading rules.
 23 Jul 2021 - Modified to do away with the JAVAX dependancy so it will run on openJDK (To do this i used the SWT tooklit instead)
 23 Jul 2021 - Got rid of the warnings that appeared when i upgraded to Java 11.
 
